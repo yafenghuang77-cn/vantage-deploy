@@ -70,7 +70,7 @@ MSW 依赖已保留，当前没有接口用例，暂不启动模拟服务。引�
 
 ### 浏览器测试
 
-用例放在 `tests/e2e/`，使用 `*.spec.ts`，通过 `@playwright/test` 导入 `test` 和 `expect`。默认构建并在 `127.0.0.1:18101` 启动生产服务，等待就绪后执行测试，结束时关闭服务；不会复用占用该端口的已有服务。当前首页用例验证页面标题、内容及刷新后的展示。
+用例放在 `tests/e2e/`，仅匹配 `*.spec.ts`，通过 `@playwright/test` 导入 `test` 和 `expect`。默认构建并在 `127.0.0.1:18101` 启动生产服务，等待就绪后执行测试，结束时关闭服务；不会复用占用该端口的已有服务。当前首页用例验证页面标题、内容、刷新后的展示，并检查未捕获的浏览器脚本异常。
 
 修改测试端口，或测试已有服务：
 
@@ -84,3 +84,9 @@ PLAYWRIGHT_BASE_URL=http://127.0.0.1:3000 pnpm test:e2e
 报告输出到 `playwright-report/`，失败截图、视频及 Trace 输出到 `test-results/`，覆盖率和浏览器报告均已加入 Git、ESLint 与 Prettier 忽略范围。CI 设置 `CI=true` 后禁止 `test.only`，使用单 worker，失败最多重试两次。Linux CI 首次准备浏览器可手动执行 `pnpm exec playwright install --with-deps chromium`，再运行 `pnpm test:ci`；CI 应保存上述报告目录以便排查失败。
 
 `pnpm check` 和提交钩子保持静态检查职责，测试通过单独命令运行；`pnpm test:ci` 提供完整验证入口。
+
+### GitHub 自动检查
+
+`.github/workflows/test.yml` 在向 `main` 推送、创建或更新 PR 时执行，也支持手动触发。工作流使用与当前本地一致的 Node.js 24.16.0、pnpm 12.10.1，通过 frozen lockfile 安装依赖，并准备 Chromium 及 Linux 系统依赖，再执行 `pnpm test:ci`。CI 使用 npm 官方源，关闭 Husky 安装和 Next.js 遥测；成功或失败后均上传已生成的覆盖率、Playwright 报告及失败附件，保留 7 天。
+
+工作流随代码推送后生效；如需禁止测试失败时合并，在 GitHub 分支保护规则中将 `test` 检查设为必需。
