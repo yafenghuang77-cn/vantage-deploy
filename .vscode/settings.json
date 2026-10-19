@@ -29,10 +29,11 @@
   "prettier.prettierPath": "./node_modules/prettier",
   "prettier.useEditorConfig": false,
   "stylelint.enable": true,
-  "stylelint.validate": ["css"],
+  "stylelint.validate": ["css", "less"],
   "stylelint.configFile": "stylelint.config.mjs",
   "stylelint.stylelintPath": "./node_modules/stylelint",
   "css.validate": false,
+  "less.validate": false,
   "typescript.format.enable": false,
   "javascript.format.enable": false,
   "typescript.tsdk": "node_modules/typescript/lib",
@@ -43,7 +44,7 @@
   "[typescriptreact]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "[javascript][javascriptreact][typescript][typescriptreact][json][jsonc][css][html][markdown][yaml]": {
+  "[javascript][javascriptreact][typescript][typescriptreact][json][jsonc][css][less][html][markdown][yaml]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   }
 }

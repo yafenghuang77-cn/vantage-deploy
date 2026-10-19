@@ -3,7 +3,7 @@ const lintStagedConfig = {
     'eslint --fix --max-warnings=0 --no-warn-ignored --no-error-on-unmatched-pattern',
     'prettier --write --ignore-unknown',
   ],
-  '*.css': [
+  '*.{css,less}': [
     'stylelint --fix --max-warnings=0 --allow-empty-input',
     'prettier --write --ignore-unknown',
   ],

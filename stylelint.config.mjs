@@ -19,6 +19,10 @@ const stylelintConfig = {
       // Tailwind resolves the package name from a string import.
       rules: { 'import-notation': 'string' },
     },
+    {
+      files: ['**/*.less'],
+      extends: ['stylelint-config-standard-less'],
+    },
   ],
   rules: {
     'selector-class-pattern': null,

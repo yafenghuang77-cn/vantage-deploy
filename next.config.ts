@@ -14,6 +14,15 @@ const nextConfig: NextConfig = {
         loaders: ['@tailwindcss/turbopack'],
         as: '*.css',
       },
+      '*.less': {
+        condition: { not: { path: '*.module.less' } },
+        loaders: [{ loader: 'less-loader', options: { webpackImporter: false } }],
+        as: '*.css',
+      },
+      '*.module.less': {
+        loaders: [{ loader: 'less-loader', options: { webpackImporter: false } }],
+        as: '*.module.css',
+      },
     },
   },
 };
