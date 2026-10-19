@@ -3,10 +3,19 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
     "build": "next build",
+    "check": "pnpm typecheck && pnpm lint && pnpm format:check",
+    "dev": "next dev",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "lint": "pnpm lint:js && pnpm lint:style",
+    "lint:fix": "pnpm lint:js --fix && pnpm lint:style --fix",
+    "lint:js": "eslint . --max-warnings=0",
+    "lint:staged": "lint-staged",
+    "lint:style": "stylelint \"**/*.css\" --allow-empty-input --max-warnings=0",
+    "prepare": "husky",
     "start": "next start",
-    "lint": "eslint"
+    "typecheck": "next typegen && tsc --noEmit"
   },
   "dependencies": {
     "@ant-design/icons": "^6.3.4",
@@ -57,6 +66,7 @@
   "devDependencies": {
     "@commitlint/cli": "^21.2.3",
     "@commitlint/config-conventional": "^21.2.3",
+    "@eslint/js": "^9.39.5",
     "@playwright/test": "^1.64.1",
     "@tailwindcss/turbopack": "^4.3.3",
     "@testing-library/dom": "^10.4.2",
@@ -68,7 +78,7 @@
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
     "babel-plugin-react-compiler": "1.0.0",
-    "eslint": "^10.13.0",
+    "eslint": "^9.39.5",
     "eslint-config-next": "16.4.2",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-jest": "^29.17.0",
@@ -86,6 +96,6 @@
     "stylelint-config-standard": "^40.0.0",
     "swagger-ui-dist": "^5.33.3",
     "tailwindcss": "^4.3.3",
-    "typescript": "^7.0.2"
+    "typescript": "~6.0.3"
   }
 }
