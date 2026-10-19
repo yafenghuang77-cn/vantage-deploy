@@ -15,6 +15,15 @@
     "lint:style": "stylelint \"**/*.{css,less}\" --allow-empty-input --max-warnings=0",
     "prepare": "husky",
     "start": "next start",
+    "test": "jest",
+    "test:ci": "pnpm check && pnpm test:coverage && pnpm test:e2e",
+    "test:coverage": "jest --ci --coverage",
+    "test:e2e": "playwright test",
+    "test:e2e:headed": "playwright test --headed",
+    "test:e2e:install": "playwright install chromium",
+    "test:e2e:report": "playwright show-report",
+    "test:e2e:ui": "playwright test --ui",
+    "test:watch": "jest --watch",
     "typecheck": "next typegen && tsc --noEmit"
   },
   "dependencies": {

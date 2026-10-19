@@ -136,11 +136,7 @@ export default defineConfig([
   },
   {
     ...jest.configs['flat/recommended'],
-    files: [
-      'tests/setup.{ts,tsx,js,jsx}',
-      'tests/unit/**/*.{ts,tsx,js,jsx}',
-      '**/*.{test,spec}.{ts,tsx,js,jsx}',
-    ],
+    files: ['tests/setup.{ts,tsx,js,jsx}', 'tests/unit/**/*.{ts,tsx,js,jsx}'],
   },
   {
     files: ['**/*.{cjs,cts}'],

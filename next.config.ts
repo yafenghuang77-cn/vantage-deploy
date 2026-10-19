@@ -1,7 +1,6 @@
 import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
-  /* config options here */
   experimental: {
     agentFeedback: true,
   },
@@ -16,11 +15,11 @@ const nextConfig: NextConfig = {
       },
       '*.less': {
         condition: { not: { path: '*.module.less' } },
-        loaders: [{ loader: 'less-loader', options: { webpackImporter: false } }],
+        loaders: [{ loader: 'less-loader', options: { webpackImporter: true } }],
         as: '*.css',
       },
       '*.module.less': {
-        loaders: [{ loader: 'less-loader', options: { webpackImporter: false } }],
+        loaders: [{ loader: 'less-loader', options: { webpackImporter: true } }],
         as: '*.module.css',
       },
     },
